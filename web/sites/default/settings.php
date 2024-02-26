@@ -1,7 +1,7 @@
 <?php
 
 // phpcs:ignoreFile
-
+$settings['config_sync_directory'] = './../config/default';
 /**
  * @file
  * Drupal site-specific configuration file.

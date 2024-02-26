@@ -1,0 +1,4 @@
+name: 'eventhub event generation'
+type: module
+description: 'Generates content for events'
+core_version_requirement: ^8 || ^9 || ^10

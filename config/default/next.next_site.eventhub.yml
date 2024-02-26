@@ -1,0 +1,11 @@
+uuid: c13f9756-ea93-40b5-9a75-3dcb3919e44b
+langcode: en
+status: true
+dependencies: {  }
+id: eventhub
+label: EventHub
+base_url: 'http://localhost:3000'
+preview_url: 'http://localhost:3000/api/preview'
+preview_secret: secret
+revalidate_url: ''
+revalidate_secret: ''

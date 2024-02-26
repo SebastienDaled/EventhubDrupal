@@ -1,0 +1,20 @@
+uuid: 7aa1dca6-b85c-4689-a55e-1770af0e7eac
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_start_sale_date
+field_name: field_start_sale_date
+entity_type: node
+type: datetime
+settings:
+  datetime_type: datetime
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
