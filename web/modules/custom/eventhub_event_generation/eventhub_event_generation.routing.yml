@@ -1,9 +1,0 @@
-# modules/custom/eventhub_event_generation/eventhub_event_generation.routing.yml
-
-eventhub_event_generation.content:
-  path: '/event-generation'
-  defaults:
-    _controller: '\Drupal\eventhub_event_generation\Controller\EventController::content'
-    _title: 'Event Generation'
-  requirements:
-    _permission: 'access content'

@@ -1,4 +1,4 @@
-name: 'eventhub event generation'
+name: 'eventhub api content generation'
 type: module
 description: 'Generates content for events'
 core_version_requirement: ^8 || ^9 || ^10

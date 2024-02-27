@@ -20,8 +20,7 @@ module:
   editor: 0
   entity_reference_revisions: 0
   event_genaration: 0
-  event_generation: 0
-  eventhub_event_generation: 0
+  eventhub_api_content: 0
   field: 0
   field_ui: 0
   file: 0
@@ -30,6 +29,7 @@ module:
   history: 0
   image: 0
   jsonapi: 0
+  layout_discovery: 0
   link: 0
   menu_link_content: 0
   menu_ui: 0

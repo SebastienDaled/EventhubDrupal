@@ -1,0 +1,9 @@
+# modules/custom/eventhub_api_content/eventhub_api_content.routing.yml
+
+eventhub_api_content.content:
+  path: '/event-generation'
+  defaults:
+    _controller: '\Drupal\eventhub_api_content\Controller\EventhubApiContentController::content'
+    _title: 'Event Api Generation'
+  requirements:
+    _permission: 'access content'
