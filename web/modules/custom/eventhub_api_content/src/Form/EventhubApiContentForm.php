@@ -82,9 +82,11 @@ class EventhubApiContentForm extends FormBase {
 
       // search for the biggets image in the images array
       $biggest = 0;
+      $biggest_key = 0;
       foreach ($event->images as $key => $image) {
         if ($image->width > $biggest) {
-          $biggest = $key;
+          $biggest = $image->width;
+          $biggest_key = $key;
         }
       }
 
@@ -105,7 +107,7 @@ class EventhubApiContentForm extends FormBase {
         'field_genre' => [
           'target_id' => $genre->id(),
         ],
-        'field_hero_image_source' => $event->images[$biggest]->url,
+        'field_hero_image_source' => $event->images[$biggest_key]->url,
         'field_location' => $event->_embedded->venues[0]->name,
         'field_max_price' => $event->priceRanges[0]->max,
         'field_min_price' => $event->priceRanges[0]->min,
