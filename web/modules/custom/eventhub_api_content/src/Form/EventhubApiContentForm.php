@@ -23,6 +23,7 @@ class EventhubApiContentForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    // The form for the API URL
     $form['api_url'] = [
       '#type' => 'textfield',
       '#title' => $this->t('API URL'),
@@ -40,6 +41,7 @@ class EventhubApiContentForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+    // get the URL from the form
     $url = $form_state->getValue('api_url');
 
     // do a fetch of the API
@@ -47,20 +49,23 @@ class EventhubApiContentForm extends FormBase {
     $data = json_decode($response->getBody());
     
     $data = $data->_embedded;
-    
-    // dd($data);
-    // for each event item in $data, create an event node
+  
+    // for each event item received from the API, create a node
     foreach ($data->events as $event) {
+      // make a bolean for the sales status
       $onsale = false;
 
       if ($event->dates->status->code == 'onsale') {
         $onsale = true;
       }
 
+      // get the country and genre taxonomy terms to check of they exist
       $country = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['name' => $event->_embedded->venues[0]->country->name]);
       $genre = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['name' => $event->classifications[0]->genre->name]);
 
+      // does the check if the taxonomy terms exist, if not, create them
       if (empty($country)) {
+        // taxonomy term does not exist, create it
         $country = \Drupal\taxonomy\Entity\Term::create([
           'name' => $event->_embedded->venues[0]->country->name,
           'vid' => 'country',
@@ -70,7 +75,9 @@ class EventhubApiContentForm extends FormBase {
         $country = array_values($country)[0];
       }
 
+      // does the check if the taxonomy terms exist, if not, create them
       if (empty($genre)) {
+        // taxonomy term does not exist, create it
         $genre = \Drupal\taxonomy\Entity\Term::create([
           'name' => $event->classifications[0]->genre->name,
           'vid' => 'genre',
@@ -80,8 +87,10 @@ class EventhubApiContentForm extends FormBase {
         $genre = array_values($genre)[0];
       }
 
-      // search for the biggets image in the images array
+      // searches for the biggets image in size to use as the hero image
+      // width size is used to compare
       $biggest = 0;
+      // key is used to get the image url
       $biggest_key = 0;
       foreach ($event->images as $key => $image) {
         if ($image->width > $biggest) {
@@ -90,18 +99,16 @@ class EventhubApiContentForm extends FormBase {
         }
       }
 
-
+      // create the node
       $node = \Drupal\node\Entity\Node::create([
         'type' => 'event',
         'title' => $event->name,
         'field_adress' => $event->_embedded->venues[0]->address->line1,
         'body' => $event->description,
         'field_city' => $event->_embedded->venues[0]->city->name,
-        // country is a taxnomy term, if we want to use it, we need to create a taxonomy term
         'field_country' => [
           'target_id' => $country->id(),
         ],
-        // date type is a date field, so we need to convert the date to the right format
         'field_date' => date('Y-m-d\TH:i:s', strtotime($event->dates->start->localDate . ' ' . $event->dates->start->localTime)),
         'field_end_sale_date' => date('Y-m-d\TH:i:s', strtotime($event->sales->public->endDateTime)),
         'field_genre' => [
@@ -118,8 +125,5 @@ class EventhubApiContentForm extends FormBase {
       ]);
       $node->save();
     }
-
-
   }
-
 }
