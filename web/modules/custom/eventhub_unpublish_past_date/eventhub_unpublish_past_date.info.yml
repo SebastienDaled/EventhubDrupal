@@ -1,0 +1,4 @@
+name: 'Unpublish Past Date'
+type: module
+description: 'Unpublishes nodes from type event when they are past there date. by making field_past_date true'
+core_version_requirement: ^8 || ^9 || ^10

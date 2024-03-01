@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+ module:
+   - eventhub_unpublish_past_date
+title: 'Custom Job to unpublish event'
+id: unpublish_event
+module: eventhub_unpublish_past_date
+callback: eventhub_unpublish_past_date_cron
+scheduler:
+ id: simple
+ configuration:
+   rules:
+     - '* * * * *'

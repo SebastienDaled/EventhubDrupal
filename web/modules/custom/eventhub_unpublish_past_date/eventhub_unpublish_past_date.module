@@ -1,0 +1,26 @@
+<?php
+
+use Drupal\menu_test\Access\AccessCheck;
+
+function eventhub_unpublish_past_date_cron() {
+  // query all published events from type event
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'event')
+    ->condition('status', 1)
+    ->AccessCheck(FALSE);
+
+  // execute the query
+  $nids = $query->execute();
+  $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
+
+  // loop through the nodes and check if the date is in the past
+  foreach ($nodes as $node) {
+    $date = $node->get('field_date')->value;
+    $date = strtotime($date);
+    $now = strtotime('now');
+    if ($date < $now) {
+      $node->set('field_past_date', 1);
+      $node->save();
+    }
+  }
+}
