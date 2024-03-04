@@ -25,7 +25,7 @@ class EventhubApiContentForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     // The form for the API URL
     $form['api_url'] = [
-      '#type' => 'textfield',
+      '#type' => 'textarea',
       '#title' => $this->t('API URL'),
       '#description' => $this->t('The URL of the API.'),
       '#required' => TRUE,
@@ -99,6 +99,14 @@ class EventhubApiContentForm extends FormBase {
         }
       }
 
+      $seatmap = null; 
+
+      if (empty($seatmap)) {
+        $seatmap = 'https://via.placeholder.com/500';
+      } else {
+        $seatmap = $event->seatmap->staticUrl;
+      }
+
       // create the node
       $node = \Drupal\node\Entity\Node::create([
         'type' => 'event',
@@ -120,7 +128,7 @@ class EventhubApiContentForm extends FormBase {
         'field_min_price' => $event->priceRanges[0]->min,
         'field_performer' => $event->_embedded->attractions[0]->name,
         'field_sales_status' => $onsale,
-        'field_seatmap_image_source' => $event->seatmap->staticUrl,
+        'field_seatmap_image_source' => $seatmap,
         'field_start_sale_date' => date('Y-m-d\TH:i:s', strtotime($event->sales->public->startDateTime)),
       ]);
       $node->save();
