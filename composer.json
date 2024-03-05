@@ -20,6 +20,7 @@
         "drupal/core-project-message": "^10.2",
         "drupal/core-recommended": "^10.2",
         "drupal/facets": "^2.0",
+        "drupal/jsonapi_menu_items": "^1.2",
         "drupal/migrate_plus": "^6.0",
         "drupal/mollie": "^2.2",
         "drupal/next": "^1.6",
@@ -29,6 +30,7 @@
         "drupal/restui": "^1.21",
         "drupal/search_api": "^1.31",
         "drupal/search_api_ai": "^1.0@alpha",
+        "drupal/ultimate_cron": "^2.0@alpha",
         "drupal/webform": "^6.2",
         "drupal/webform_rest": "^4.1",
         "drush/drush": "^12.4"
@@ -36,7 +38,7 @@
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "alpha",
     "prefer-stable": true,
     "config": {
         "allow-plugins": {
