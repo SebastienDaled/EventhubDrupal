@@ -31,6 +31,7 @@
         "drupal/search_api": "^1.31",
         "drupal/search_api_ai": "^1.0@alpha",
         "drupal/ultimate_cron": "^2.0@alpha",
+        "drupal/video_embed_field": "^2.5",
         "drupal/webform": "^6.2",
         "drupal/webform_rest": "^4.1",
         "drush/drush": "^12.4"

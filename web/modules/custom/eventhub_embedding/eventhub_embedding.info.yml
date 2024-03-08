@@ -1,0 +1,4 @@
+name: 'Node Vector Embedding'
+type: module
+description: 'make a vector embedding for each node in with content type event'
+core_version_requirement: ^8 || ^9 || ^10

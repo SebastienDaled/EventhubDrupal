@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+ module:
+   - eventhub_embedding
+title: 'Custom Job to embed nodes from content type event'
+id: embedding
+module: eventhub_embedding
+callback: 'eventhub_embedding_cron'
+scheduler:
+ id: simple
+ configuration:
+   rules:
+     - '* * * * *'
