@@ -1,0 +1,17 @@
+uuid: a91b8645-c757-4454-8e43-6bd328a598fd
+langcode: en
+status: true
+dependencies:
+  module:
+    - announcements_feed
+title: 'Default cron handler'
+id: announcements_feed_cron
+weight: 0
+module: announcements_feed
+callback: announcements_feed_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

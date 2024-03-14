@@ -1,0 +1,23 @@
+uuid: 6efdbb40-bc90-4759-b5d4-728a423104b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_past_date
+    - node.type.event
+id: node.event.field_past_date
+field_name: field_past_date
+entity_type: node
+bundle: event
+label: 'Past Date'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

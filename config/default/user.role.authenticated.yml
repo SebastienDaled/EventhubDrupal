@@ -4,14 +4,17 @@ status: true
 dependencies:
   config:
     - filter.format.basic_html
+    - filter.format.webform_default
   module:
     - comment
+    - consumers
     - contact
     - file
     - filter
     - search
     - shortcut
     - system
+    - webform_rest
 _core:
   default_config_hash: cFrlqjtkTfvY3RGccjJkPf1SGIfJ942IrxTLWAO4mgA
 id: authenticated
@@ -23,8 +26,12 @@ permissions:
   - 'access content'
   - 'access shortcuts'
   - 'access site-wide contact form'
+  - 'access webform rest settings'
+  - 'add consumer entities'
+  - 'administer comments'
   - 'delete own files'
   - 'post comments'
   - 'search content'
   - 'skip comment approval'
   - 'use text format basic_html'
+  - 'use text format webform_default'

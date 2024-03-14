@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.event.field_location
     - field.field.node.event.field_max_price
     - field.field.node.event.field_min_price
+    - field.field.node.event.field_past_date
     - field.field.node.event.field_performer
     - field.field.node.event.field_sales_status
     - field.field.node.event.field_seatmap_image_source
@@ -52,7 +53,10 @@ hidden:
   field_location: true
   field_max_price: true
   field_min_price: true
+  field_past_date: true
   field_performer: true
   field_sales_status: true
   field_seatmap_image_source: true
   field_start_sale_date: true
+  langcode: true
+  search_api_excerpt: true

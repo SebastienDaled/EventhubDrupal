@@ -1,0 +1,15 @@
+uuid: 5ff1647c-61d3-482c-a1be-9db495d2adea
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_db
+id: events_server
+name: 'Events Server'
+description: 'this is used to search throug events'
+backend: search_api_db
+backend_config:
+  database: 'default:default'
+  min_chars: 1
+  matching: partial
+  phrase: bigram

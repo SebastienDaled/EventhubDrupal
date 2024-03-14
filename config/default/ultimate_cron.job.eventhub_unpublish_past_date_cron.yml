@@ -1,0 +1,29 @@
+uuid: b20f2db6-bcac-43f0-a603-9f514abfd61e
+langcode: en
+status: true
+dependencies:
+  module:
+    - eventhub_unpublish_past_date
+title: 'Default cron handler'
+id: eventhub_unpublish_past_date_cron
+weight: 0
+module: eventhub_unpublish_past_date
+callback: eventhub_unpublish_past_date_cron
+scheduler:
+  id: simple
+  configuration:
+    rules:
+      - '0+@ 0 * * *'
+launcher:
+  id: serial
+  configuration:
+    timeouts:
+      lock_timeout: 3600
+    launcher:
+      thread: 0
+logger:
+  id: database
+  configuration:
+    method: '3'
+    expire: 1209600
+    retain: 1000

@@ -1,0 +1,10 @@
+uuid: 439f86b6-918b-4b7d-8429-c1f923875704
+langcode: en
+status: true
+dependencies: {  }
+id: video_text_block
+label: 'Video Text block'
+icon_uuid: null
+icon_default: null
+description: 'A video on the left and text left'
+behavior_plugins: {  }

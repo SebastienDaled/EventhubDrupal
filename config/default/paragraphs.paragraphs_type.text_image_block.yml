@@ -1,0 +1,10 @@
+uuid: 71122a05-e7b5-4deb-b53c-cfced0e91927
+langcode: en
+status: true
+dependencies: {  }
+id: text_image_block
+label: 'Text Image Block'
+icon_uuid: null
+icon_default: null
+description: 'Text on the left and the image on the right'
+behavior_plugins: {  }

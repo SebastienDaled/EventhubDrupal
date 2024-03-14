@@ -1,0 +1,21 @@
+uuid: 248f2611-af12-445d-9c39-694d59366d27
+langcode: en
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - serialization
+    - simple_oauth
+    - user
+id: user_registration
+plugin_id: user_registration
+granularity: resource
+configuration:
+  methods:
+    - POST
+  formats:
+    - json
+  authentication:
+    - basic_auth
+    - oauth2
+    - cookie

@@ -1,0 +1,18 @@
+uuid: 0e05b780-d423-4748-a5fd-47b804dfd38d
+langcode: en
+status: false
+dependencies:
+  module:
+    - serialization
+    - user
+    - webform
+id: entity.webform
+plugin_id: 'entity:webform'
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie

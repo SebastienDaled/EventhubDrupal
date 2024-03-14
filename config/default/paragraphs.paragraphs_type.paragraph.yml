@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies: {  }
 id: paragraph
-label: paragraph
+label: 'Paragraph Left'
 icon_uuid: null
 icon_default: null
-description: ''
+description: 'Text placed left and an image placed right'
 behavior_plugins: {  }

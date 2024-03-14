@@ -1,0 +1,11 @@
+uuid: 362e6e6b-16a1-423c-9a5d-743ef3366d1b
+langcode: en
+status: true
+dependencies: {  }
+id: oauth2_token.access_token
+site_resolver: site_selector
+configuration:
+  sites:
+    eventhub: eventhub
+revalidator: ''
+revalidator_configuration: {  }

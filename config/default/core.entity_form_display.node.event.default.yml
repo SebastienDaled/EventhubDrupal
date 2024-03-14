@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.event.field_location
     - field.field.node.event.field_max_price
     - field.field.node.event.field_min_price
+    - field.field.node.event.field_past_date
     - field.field.node.event.field_performer
     - field.field.node.event.field_sales_status
     - field.field.node.event.field_seatmap_image_source
@@ -122,6 +123,13 @@ content:
     settings:
       placeholder: ''
     third_party_settings: {  }
+  field_past_date:
+    type: boolean_checkbox
+    weight: 137
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_performer:
     type: string_textfield
     weight: 122
@@ -150,6 +158,13 @@ content:
     weight: 124
     region: content
     settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
     third_party_settings: {  }
   path:
     type: path
