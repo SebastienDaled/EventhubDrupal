@@ -1,0 +1,7 @@
+services:
+  eventhub_api_content.eventhub_api_content:
+    class: Drupal\eventhub_api_content\Command\EventHubApiContentCommand
+    arguments: []
+    tags:
+      - { name: http_client_factory }
+ 
