@@ -1,0 +1,66 @@
+uuid: 26d94963-edf8-4a55-aa03-eca389aa5269
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.event.body
+    - field.field.node.event.field_adress
+    - field.field.node.event.field_city
+    - field.field.node.event.field_country
+    - field.field.node.event.field_date
+    - field.field.node.event.field_end_sale_date
+    - field.field.node.event.field_favourite_users
+    - field.field.node.event.field_genre
+    - field.field.node.event.field_hero_image_source
+    - field.field.node.event.field_id
+    - field.field.node.event.field_location
+    - field.field.node.event.field_max_price
+    - field.field.node.event.field_min_price
+    - field.field.node.event.field_past_date
+    - field.field.node.event.field_performer
+    - field.field.node.event.field_sales_status
+    - field.field.node.event.field_seatmap_image_source
+    - field.field.node.event.field_start_sale_date
+    - node.type.event
+  module:
+    - text
+    - user
+id: node.event.teaser
+targetEntityType: node
+bundle: event
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_adress: true
+  field_city: true
+  field_country: true
+  field_date: true
+  field_end_sale_date: true
+  field_favourite_users: true
+  field_genre: true
+  field_hero_image_source: true
+  field_id: true
+  field_location: true
+  field_max_price: true
+  field_min_price: true
+  field_past_date: true
+  field_performer: true
+  field_sales_status: true
+  field_seatmap_image_source: true
+  field_start_sale_date: true
+  langcode: true
+  search_api_excerpt: true

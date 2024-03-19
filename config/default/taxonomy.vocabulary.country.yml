@@ -1,0 +1,8 @@
+uuid: f6ce8eee-4297-47b4-8ee6-0ca5f9e1c2f1
+langcode: en
+status: true
+dependencies: {  }
+name: Country
+vid: country
+description: "these taxonomy's are used for the country where the event is happening"
+weight: 0

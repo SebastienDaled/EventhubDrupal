@@ -1,0 +1,30 @@
+uuid: eab8117b-1923-4581-b65b-c0d936ff1e58
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.video_text_block.field_text
+    - field.field.paragraph.video_text_block.field_video_link
+    - paragraphs.paragraphs_type.video_text_block
+id: paragraph.video_text_block.default
+targetEntityType: paragraph
+bundle: video_text_block
+mode: default
+content:
+  field_text:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_video_link:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

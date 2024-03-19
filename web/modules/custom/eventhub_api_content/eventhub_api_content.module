@@ -5,11 +5,27 @@ use Drupal\advancedqueue\Job;
 use Drupal\Core\Site\Settings;
 
 function eventhub_api_content_cron() {
-    $api_url = Settings::get('api_key');
+    $api_key = Settings::get('api_key');
+
+    // create a date in the format that the API expects
+    $date = date('Y-m-d\TH:i:s\Z');
+
+    // date for 3 days from now (startdate for the API)
+    $dateInThreeDays = strtotime($date . ' +3 days');
+    $dateInThreeDays = date('Y-m-d\TH:i:s\Z', $dateInThreeDays);
+
+    // date for 2 weeks from now (enddate for the API)
+    $dateInTwoWeeks = strtotime($date . ' +2 week');
+    $dateInTwoWeeks = date('Y-m-d\TH:i:s\Z', $dateInTwoWeeks);
+
+    // create the API URL
+    $api_url = "https://app.ticketmaster.com/discovery/v2/events?apikey=" . $api_key . "&locale=*&startDateTime=" . $dateInThreeDays ."&endDateTime=" . $dateInTwoWeeks . "&sort=relevance,desc&countryCode=BE";
 
     // do a fetch of the API
+    // decode the JSON response
     $response = \Drupal::httpClient()->get($api_url);
     $data = json_decode($response->getBody());
+    
     
     $data = $data->_embedded;
     $queue = Queue::load('default');

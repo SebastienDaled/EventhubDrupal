@@ -1,0 +1,8 @@
+uuid: f17f4a90-8be1-44c8-b830-1895d125198f
+langcode: en
+status: true
+dependencies: {  }
+name: Genre
+vid: genre
+description: "these taxonomy's are used for the genres of an event"
+weight: 0

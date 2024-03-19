@@ -45,6 +45,7 @@ class createEvent extends JobTypeBase {
     $onsale = false;
     $seatmap = 'https://via.placeholder.com/300';
     $field_start_sale_date = "insert Start Sale Date";
+    $id = $event->data->id;
 
     // check if event has a name
     if (isset($event->data->name)) {
@@ -168,32 +169,45 @@ class createEvent extends JobTypeBase {
     }
 
     $exists = false;
-    // foreach ($all_nodes as $node) {
-    //   if ($node->field_id->value == $event->data->id) {
-    //     $exists = true;
-    //     $node= \Drupal\node\Entity\Node::load($node->id());
-    //     $node->set('title', $name);
-    //     $node->set('field_adress', $address);
-    //     $node->set('body', $body);
-    //     $node->set('field_city', $city);
-    //     $node->set('field_country', $country->id());
-    //     $node->set('field_date', $date);
-    //     $node->set('field_end_sale_date', $end_sale_date);
-    //     $node->set('field_genre', $genre->id());
-    //     $node->set('field_hero_image_source', $hero_image_source);
-    //     $node->set('field_location', $location);
-    //     $node->set('field_max_price', $max_price);
-    //     $node->set('field_min_price', $min_price);
-    //     $node->set('field_performer', $performer);
-    //     $node->set('field_sales_status', $onsale);
-    //     $node->set('field_seatmap_image_source', $seatmap);
-    //     $node->set('field_start_sale_date', $field_start_sale_date);
-    //     $node->save();
-    //   }
-    // }
+    foreach ($all_nodes as $node) {
+      if (!isset($node->field_id->value)) {
+        continue;
+        
+      }
+      else if ($node->field_id->value == $event->data->id) {
+        $exists = true;
+        // dd($node->id());
+        $node= \Drupal\node\Entity\Node::load($node->id());
+        // dd($node);
+        $node->set('title', $name);
+        $node->set('field_adress', $address);
+        $node->set('body', $body);
+        $node->set('field_city', $city);
+        $node->set('field_country', [
+          'target_id' => intval($country->id()),
+        ]);
+        $node->set('field_date', $date);
+        $node->set('field_end_sale_date', $end_sale_date);
+        $node->set('field_genre', [
+          'target_id' => intval($genre->id()),
+        ]);
+        $node->set('field_hero_image_source', $hero_image_source);
+        $node->set('field_location', $location);
+        $node->set('field_max_price', $max_price);
+        $node->set('field_min_price', $min_price);
+        $node->set('field_performer', $performer);
+        $node->set('field_sales_status', $onsale);
+        $node->set('field_seatmap_image_source', $seatmap);
+        $node->set('field_start_sale_date', $field_start_sale_date);
+        $node->save();
+
+        return JobResult::success("Node updated");
+      }
+    }
 
     // create the node
     if (!$exists) {
+      // dd("create new node");
       $node = \Drupal\node\Entity\Node::create([
         'type' => 'event',
         'title' => $name,
@@ -219,10 +233,11 @@ class createEvent extends JobTypeBase {
         'field_sales_status' => $onsale,
         'field_seatmap_image_source' => $seatmap,
         'field_start_sale_date' => $field_start_sale_date,
+        'field_id' => $id,
       ]);
       $node->save();
 
-      return JobResult::success();
+      return JobResult::success("Node created");
     }
     
   }

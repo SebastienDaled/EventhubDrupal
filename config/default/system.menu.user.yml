@@ -1,0 +1,8 @@
+uuid: 823d3213-7a05-4b64-a5d8-5c591628e52b
+langcode: en
+status: true
+dependencies: {  }
+id: user
+label: User
+description: 'this is the menu for the login and user page'
+locked: false

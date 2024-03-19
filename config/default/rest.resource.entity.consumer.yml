@@ -1,0 +1,21 @@
+uuid: 4a26238b-25de-426d-ae95-4d561ebae20c
+langcode: en
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - consumers
+    - serialization
+    - simple_oauth
+id: entity.consumer
+plugin_id: 'entity:consumer'
+granularity: resource
+configuration:
+  methods:
+    - GET
+    - POST
+  formats:
+    - json
+  authentication:
+    - basic_auth
+    - oauth2

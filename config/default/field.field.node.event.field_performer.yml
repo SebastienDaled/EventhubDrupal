@@ -1,0 +1,19 @@
+uuid: aa6a72f8-83e3-4af8-b299-b1c9f181d080
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_performer
+    - node.type.event
+id: node.event.field_performer
+field_name: field_performer
+entity_type: node
+bundle: event
+label: Performer
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

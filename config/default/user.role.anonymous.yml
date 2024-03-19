@@ -1,0 +1,56 @@
+uuid: 357634ad-f251-4348-9d74-972e1cd462b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.restricted_html
+    - rest.resource.webform_rest_submit
+  module:
+    - comment
+    - consumers
+    - contact
+    - filter
+    - rest
+    - search
+    - system
+    - webform
+    - webform_rest
+_core:
+  default_config_hash: 6WavjUYXIegP9AAg2zXGx54MWIVoomC3SZhNiqe-Dyk
+id: anonymous
+label: 'Anonymous user'
+weight: 0
+is_admin: false
+permissions:
+  - 'access any webform configuration'
+  - 'access comments'
+  - 'access content'
+  - 'access own webform configuration'
+  - 'access site-wide contact form'
+  - 'access webform help'
+  - 'access webform overview'
+  - 'access webform rest settings'
+  - 'access webform submission user'
+  - 'add consumer entities'
+  - 'administer comments'
+  - 'administer webform'
+  - 'administer webform element access'
+  - 'administer webform submission'
+  - 'create webform'
+  - 'delete any webform'
+  - 'delete any webform submission'
+  - 'delete own webform'
+  - 'delete own webform submission'
+  - 'edit any webform'
+  - 'edit any webform submission'
+  - 'edit own webform'
+  - 'edit own webform submission'
+  - 'edit webform assets'
+  - 'edit webform source'
+  - 'edit webform twig'
+  - 'edit webform variants'
+  - 'restful post webform_rest_submit'
+  - 'search content'
+  - 'use text format restricted_html'
+  - 'view any webform submission'
+  - 'view own webform submission'

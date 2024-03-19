@@ -1,0 +1,18 @@
+uuid: ecb88534-ac86-4224-912e-8e7efdef880e
+langcode: en
+status: false
+dependencies:
+  module:
+    - serialization
+    - user
+    - webform_rest
+id: webform_rest_fields
+plugin_id: webform_rest_fields
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie

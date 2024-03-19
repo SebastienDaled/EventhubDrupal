@@ -1,0 +1,29 @@
+uuid: 7109d683-54e1-49a1-9e46-1c7f6d8b74c2
+langcode: en
+status: true
+dependencies:
+  module:
+    - eventhub_api_content
+title: 'Default cron handler'
+id: eventhub_api_content_cron
+weight: 0
+module: eventhub_api_content
+callback: eventhub_api_content_cron
+scheduler:
+  id: simple
+  configuration:
+    rules:
+      - '0+@ 0 * * *'
+launcher:
+  id: serial
+  configuration:
+    timeouts:
+      lock_timeout: 3600
+    launcher:
+      thread: 0
+logger:
+  id: database
+  configuration:
+    method: '3'
+    expire: 1209600
+    retain: 1000
