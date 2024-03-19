@@ -29,105 +29,119 @@ class createEvent extends JobTypeBase {
     $all_nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple();
   
 
-    $name = $event->data->name;
-    $address = $event->data->_embedded->venues[0]->address->line1;
-    $body = $event->data->description;
-    $city = $event->data->_embedded->venues[0]->city->name;
-    $country = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['name' => $event->data->_embedded->venues[0]->country->name]);
-    $date = date('Y-m-d\TH:i:s', strtotime($event->data->dates->start->localDate . ' ' . $event->data->dates->start->localTime));
-    $end_sale_date = date('Y-m-d\TH:i:s', strtotime($event->data->sales->public->endDateTime));
-    $genre = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['name' => $event->data->classifications[0]->genre->name]);
-    $hero_image_source = $event->data->images[0]->url;
-    $location = $event->data->_embedded->venues[0]->name;
-    $max_price = $event->data->priceRanges[0]->max;
-    $min_price = $event->data->priceRanges[0]->min;
-    // $performer = $event->data->_embedded->attractions[0]->name || 'No performer';
-    $performer = 'No performer';
+    $name = "insert Title";
+    $address = "insert Address";
+    $body = "insert Body";
+    $city =  "insert City";
+    $country = "insert Country";
+    $date = "insert Date";
+    $end_sale_date = "insert End Sale Date";
+    $genre = "insert Genre";
+    $hero_image_source = 'https://via.placeholder.com/300';
+    $location = "insert Location";
+    $max_price = 0;
+    $min_price = 0;
+    $performer = "insert Performer";
     $onsale = false;
-    $seatmap = null;
-    $field_start_sale_date = date('Y-m-d\TH:i:s', strtotime($event->data->sales->public->startDateTime));
+    $seatmap = 'https://via.placeholder.com/300';
+    $field_start_sale_date = "insert Start Sale Date";
 
     // check if event has a name
-    if ($event->data->name) {
-      $name = 'No name';
+    if (isset($event->data->name)) {
+      $name = $event->data->name;
     }
     
     // check if event has an address
-    if (empty($address)) {
-      $address = 'No address';
+    if (isset($event->data->_embedded->venues[0]->address->line1)) {
+      $address = $event->data->_embedded->venues[0]->address->line1;
     }
 
     // check if event has a description
-    if (empty($body)) {
-      $body = 'No description';
+    if (isset($event->data->description)) {
+      $body = $event->data->description;
     }
 
     // check if event has a city
-    if (empty($city)) {
-      $city = 'No city';
+    if (isset($event->data->_embedded->venues[0]->city->name)) {
+      $city = $event->data->_embedded->venues[0]->city->name;
     }
 
     // does the check if the taxonomy terms exist, if not, create them
-    if (empty($country)) {
+    if (isset($event->data->_embedded->venues[0]->country->name)) {
       // taxonomy term does not exist, create it
-      $country = \Drupal\taxonomy\Entity\Term::create([
-        'name' => $event->data->_embedded->venues[0]->country->name,
-        'vid' => 'country',
-      ]);
-      $country->save();
+      $country = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['name' => $event->data->_embedded->venues[0]->country->name]);
+      
+      if (empty($country)) {
+        $country = \Drupal\taxonomy\Entity\Term::create([
+          'name' => $event->data->_embedded->venues[0]->country->name,
+          'vid' => 'country',
+        ]);
+        $country->save();
+      } else {
+        $country = array_values($country)[0];
+      }
+
     } else {
+      $country = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['name' => "Belgium"]);;
       $country = array_values($country)[0];
     }
-
     // check if event has a date
-    if (empty($date)) {
-      $date = 'No date';
+    if (isset($event->data->dates->start->localDate) && isset($event->data->dates->start->localTime)) {
+      $date = date('Y-m-d\TH:i:s', strtotime($event->data->dates->start->localDate . ' ' . $event->data->dates->start->localTime));
     }
 
     // check if event has an end sale date
-    if (empty($end_sale_date)) {
-      $end_sale_date = 'No end sale date';
+    if (isset($event->data->sales->public->endDateTime)) {
+      $end_sale_date = date('Y-m-d\TH:i:s', strtotime($event->data->sales->public->endDateTime));
     }
 
     // check if event has a location
-    if (empty($genre)) {
-      // taxonomy term does not exist, create it
-      $genre = \Drupal\taxonomy\Entity\Term::create([
-        'name' => $event->data->classifications[0]->genre->name,
-        'vid' => 'genre',
-      ]);
-      $genre->save();
+    if (isset($event->data->classifications[0]->genre->name)) {
+
+      $genre = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['name' => $event->data->classifications[0]->genre->name]);
+
+      if (empty($genre)) {
+        // taxonomy term does not exist, create it
+        $genre = \Drupal\taxonomy\Entity\Term::create([
+          'name' => $event->data->classifications[0]->genre->name,
+          'vid' => 'genre',
+        ]);
+        $genre->save();
+      } else {
+        $genre = array_values($genre)[0];
+      }
     } else {
+      $genre = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties(['name' => "Other"]);
       $genre = array_values($genre)[0];
     }
 
     // check if event has a hero image
-    if (empty($hero_image_source)) {
-      $hero_image_source = 'https://via.placeholder.com/300';
+    if (isset($event->data->images[0]->url)) {
+      $hero_image_source = $event->data->images[0]->url;
     }
 
     // check if event has a location
-    if (empty($location)) {
-      $location = 'No location';
+    if (isset($event->data->_embedded->venues[0]->name)) {
+      $location = $event->data->_embedded->venues[0]->name;
     }
 
     // check if event has a max price
-    if (empty($max_price)) {
-      $max_price = 'No max price';
+    if (isset($event->data->priceRanges[0]->max)) {
+      $max_price = $event->data->priceRanges[0]->max;
     }
 
     // check if event has a min price
-    if (empty($min_price)) {
-      $min_price = 'No min price';
+    if (isset($event->data->priceRanges[0]->min)) {
+      $min_price = $event->data->priceRanges[0]->min;
     }
 
     // check if event has a performer
-    if (empty($performer)) {
-      $performer = 'No performer';
+    if (isset($event->data->_embedded->attractions[0]->name)) {
+      $performer = $event->data->_embedded->attractions[0]->name;
     }
 
     // make a bolean for the sales status
-    if ($event->data->dates->status->code == 'onsale') {
+    if (isset($event->data->dates->status->code) && $event->data->dates->status->code === 'onsale') {
       $onsale = true;
     }
 
@@ -144,15 +158,13 @@ class createEvent extends JobTypeBase {
     }
 
     // get the url of seatmap
-    if (empty($seatmap)) {
-      $seatmap = 'https://via.placeholder.com/300';
-    } else {
+    if (isset($event->data->seatmap->staticUrl)) {
       $seatmap = $event->data->seatmap->staticUrl;
     }
 
     // check if event has a start sale date
-    if (empty($field_start_sale_date)) {
-      $field_start_sale_date = 'No start sale date';
+    if (isset($event->data->sales->public->startDateTime)) {
+      $field_start_sale_date = date('Y-m-d\TH:i:s', strtotime($event->data->sales->public->startDateTime));
     }
 
     $exists = false;
@@ -192,12 +204,12 @@ class createEvent extends JobTypeBase {
         ],
         'field_city' => $city,
         'field_country' => [
-          'target_id' => $country->id(),
+          'target_id' => intval($country->id()),
         ],
         'field_date' => $date,
         'field_end_sale_date' => $end_sale_date,
         'field_genre' => [
-          'target_id' => $genre->id(),
+          'target_id' => intval($genre->id()),
         ],
         'field_hero_image_source' => $hero_image_source,
         'field_location' => $location,

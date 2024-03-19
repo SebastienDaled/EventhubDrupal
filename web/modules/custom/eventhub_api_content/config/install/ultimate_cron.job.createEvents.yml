@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+ module:
+   - eventhub_api_content
+title: 'Custom Job to create events'
+id: createEvents
+module: eventhub_api_content
+callback: eventhub_api_content_cron
+scheduler:
+ id: simple
+ configuration:
+   rules:
+     - '* * * * *'

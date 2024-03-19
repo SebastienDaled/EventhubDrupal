@@ -1,7 +1,0 @@
-services:
-  eventhub_queue_api.eventhub_queue_api:
-    class: Drupal\eventhub_queue_api\Command\createEventContent
-    arguments: []
-    tags:
-      - { name: http_client_factory }
- 

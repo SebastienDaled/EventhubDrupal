@@ -1,8 +1,0 @@
-uuid: 9e8f2ddc-78e1-40ab-aabf-86cb0d1c8f21
-langcode: en
-status: true
-dependencies: {  }
-id: extra-menu
-label: 'Extra menu'
-description: 'this menu is used on top of the main navigation'
-locked: false

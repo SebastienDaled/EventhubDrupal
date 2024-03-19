@@ -1,0 +1,22 @@
+<?php
+
+use Drupal\advancedqueue\Entity\Queue;
+use Drupal\advancedqueue\Job;
+use Drupal\Core\Site\Settings;
+
+function eventhub_api_content_cron() {
+    $api_url = Settings::get('api_key');
+
+    // do a fetch of the API
+    $response = \Drupal::httpClient()->get($api_url);
+    $data = json_decode($response->getBody());
+    
+    $data = $data->_embedded;
+    $queue = Queue::load('default');
+    // for each event item received from the API, create a node
+    foreach ($data->events as $event) {
+      $job = Job::create('createEvent', ['data' => $event]);
+      
+      $queue->enqueueJob($job);
+    }
+}
