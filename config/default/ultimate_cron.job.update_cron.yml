@@ -6,7 +6,7 @@ dependencies:
     - update
 title: 'Check for updates'
 id: update_cron
-weight: 0
+weight: -10
 module: update
 callback: update_cron
 scheduler:

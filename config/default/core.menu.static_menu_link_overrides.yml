@@ -8,8 +8,8 @@ definitions:
     expanded: false
     enabled: false
   contact__site_page:
-    weight: -48
+    weight: -50
     menu_name: footer
     parent: ''
+    enabled: false
     expanded: false
-    enabled: true

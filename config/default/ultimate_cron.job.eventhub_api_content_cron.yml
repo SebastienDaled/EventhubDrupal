@@ -6,7 +6,7 @@ dependencies:
     - eventhub_api_content
 title: 'Default cron handler'
 id: eventhub_api_content_cron
-weight: 0
+weight: -7
 module: eventhub_api_content
 callback: eventhub_api_content_cron
 scheduler:

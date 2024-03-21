@@ -6,7 +6,7 @@ dependencies:
     - webform
 title: 'Default cron handler'
 id: webform_cron
-weight: 0
+weight: -1
 module: webform
 callback: webform_cron
 scheduler:

@@ -6,7 +6,7 @@ dependencies:
     - eventhub_unpublish_past_date
 title: 'Default cron handler'
 id: eventhub_unpublish_past_date_cron
-weight: 0
+weight: -4
 module: eventhub_unpublish_past_date
 callback: eventhub_unpublish_past_date_cron
 scheduler:
